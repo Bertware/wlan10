@@ -1,0 +1,31 @@
+﻿<Window x:Class="Wlan10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wlan10 network manager" Height="350" Width="525">
+    <Grid>
+        <Label Content="Drag and drop networks in the preferred order" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="257"/>
+        <ListView Margin="10,31,10,10" Name="lvNetworks">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" Width="auto" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Network type" Width="auto" DisplayMemberBinding="{Binding NetworkType}" />
+                    <GridViewColumn Header="Autoconnect" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Autoconnect, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Autoswitch" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Autoswitch, Mode=TwoWay}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
