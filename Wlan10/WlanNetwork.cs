@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Wlan10
+namespace Net.Bertware.Wlan10
 {
     internal class WlanNetwork
     {

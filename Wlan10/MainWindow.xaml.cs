@@ -1,19 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 
-namespace Wlan10
+namespace Net.Bertware.Wlan10
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-
         private ObservableCollection<WlanNetwork> networks = Netshell.GetNetworks();
+
         public MainWindow()
         {
+       
             InitializeComponent();
             lvNetworks.ItemsSource = networks;
         }
@@ -22,7 +22,7 @@ namespace Wlan10
         {
             for (int i = 0; i < networks.Count; i++)
             {
-                networks[i].setPriority(i+1);
+                networks[i].setPriority(i + 1);
             }
             MessageBox.Show("The new network order was applied succesfully!");
         }
@@ -36,8 +36,10 @@ namespace Wlan10
         private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
-                "Idea and creation by Bertware.\r\nwww.bertware.net www.bertmarcelis.be\r\n\r\nThis program uses the GongSolutions.Wpf.DragDrop library made by Punker79\r\nhttps://github.com/punker76/gong-wpf-dragdrop");
+                "Idea and creation by Bertware.\r\n" +
+                "www.bertware.net www.bertmarcelis.be\r\n\r\n" +
+                "This program uses the GongSolutions.Wpf.DragDrop library made by Punker79\r\n" +
+                "https://github.com/punker76/gong-wpf-dragdrop");
         }
-
     }
 }
