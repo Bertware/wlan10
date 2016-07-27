@@ -1,10 +1,17 @@
 ﻿<Window x:Class="Wlan10.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
         Title="Wlan10 network manager" Height="503" Width="688">
     <Grid>
-        <Label Content="Drag and drop networks in the preferred order" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="26" Width="257"/>
-        <ListView Margin="10,31,10,32" Name="lvNetworks">
+        <Label Content="Drag and drop networks in the preferred order. Press save to store the new order. &#xD;&#xA;All checkbox changes are applied instantly. Once everything is configured, you don't need this tool anymore." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="44" Width="660"/>
+        <ListView Margin="10,49,10,41" Name="lvNetworks" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="40" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="auto" DisplayMemberBinding="{Binding Name}" />
@@ -12,21 +19,24 @@
                     <GridViewColumn Header="Autoconnect" Width="auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Autoconnect, Mode=TwoWay}"/>
+                                <CheckBox IsChecked="{Binding Autoconnect, Mode=TwoWay}" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Autoswitch" Width="auto">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox IsChecked="{Binding Autoswitch, Mode=TwoWay}"/>
+                                <CheckBox IsChecked="{Binding Autoswitch, Mode=TwoWay}" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnSaveOrder" Content="Save new order" HorizontalAlignment="Right" Margin="0,0,10,7" Width="150" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnSaveOrder" Content="Save new order" HorizontalAlignment="Right" Margin="0,0,10,10" Width="150" Height="26" VerticalAlignment="Bottom" Click="btnSaveOrder_Click"/>
+        <Button x:Name="btnDonate" Content="Donate" HorizontalAlignment="Right" Margin="0,0,165,10" VerticalAlignment="Bottom" Width="75" Height="26" Click="btnDonate_Click"/>
+        <Label Content="(c) Bertware 2016 - www.bertware.net - contact@bertware.net" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="425"/>
+        <Button x:Name="btnDonate_Copy" Content="Credits" HorizontalAlignment="Right" Margin="0,0,245,10" VerticalAlignment="Bottom" Width="75" Height="26" Click="btnCredits_Click"/>
 
     </Grid>
 </Window>

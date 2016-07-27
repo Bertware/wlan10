@@ -14,19 +14,19 @@ namespace Wlan10
         /// autoswitch can be yes or no 
         /// </summary>
         private const string CmdSetAutoswitch =
-            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" autoSwitch=<autoswitch> ";
+            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" autoSwitch=<autoswitch>";
 
         /// <summary>
         /// Connectionmode can be auto or manual
         /// </summary>
         private const string CmdSetAutoConnect =
-            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" ConnectionMode=<autoconnect> ";
+            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" ConnectionMode=<autoconnect>";
        
         /// <summary>
         /// nonbroadcast can be yes or no
         /// </summary>
         private const string CmdSetNonBroadcast =
-            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" nonBroadcast=<nonbroadcast> ";
+            "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" nonBroadcast=<nonbroadcast>";
         /// <summary>
         /// Set the pre-shared key or passphrase
         /// </summary>
@@ -87,7 +87,7 @@ namespace Wlan10
             {
                 _autoconnect = value;
                 string param = value ? "auto" : "manual";
-                Netshell.NetshellCmd(prepareCommand(CmdSetAutoswitch.Replace("<autoconnect>", param)));
+                Netshell.NetshellCmd(prepareCommand(CmdSetAutoConnect.Replace("<autoconnect>", param)));
             }
         }
 
@@ -98,7 +98,7 @@ namespace Wlan10
             {
                 _connectWithoutBroadcast = value;
                 string param = value ? "yes" : "no";
-                Netshell.NetshellCmd(prepareCommand(CmdSetAutoswitch.Replace("<nonbroadcast>", param)));
+                Netshell.NetshellCmd(prepareCommand(CmdSetNonBroadcast.Replace("<nonbroadcast>", param)));
             }
         }
 
@@ -263,6 +263,11 @@ namespace Wlan10
         public void setKey(string key)
         {
             Netshell.NetshellCmd(prepareCommand(CmdSetKey).Replace("<key>", key));
+        }
+
+        public void setPriority(int priority)
+        {
+            Netshell.NetshellCmd(prepareCommand(CmdUpdate).Replace("<priority>", priority.ToString()));
         }
     }
 }
