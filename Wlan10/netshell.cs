@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -8,11 +9,11 @@ namespace Wlan10
     {
         private const string CmdList = "wlan sh profiles";
 
-        public static List<WlanNetwork> GetNetworks()
+        public static ObservableCollection<WlanNetwork> GetNetworks()
         {
             string output = NetshellCmd(CmdList);
             MatchCollection m = Regex.Matches(output, ":\\s*(.*?)\r\n",RegexOptions.Multiline);
-            List<WlanNetwork> results = new List<WlanNetwork>();
+            ObservableCollection<WlanNetwork> results = new ObservableCollection<WlanNetwork>();
             for (int i = 1; i < m.Count; i++)
             {
                 if (!string.IsNullOrWhiteSpace(m[i].Value))

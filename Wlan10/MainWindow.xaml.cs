@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Wlan10
@@ -9,7 +10,7 @@ namespace Wlan10
     public partial class MainWindow : Window
     {
 
-        private List<WlanNetwork> networks = Netshell.GetNetworks();
+        private ObservableCollection<WlanNetwork> networks = Netshell.GetNetworks();
         public MainWindow()
         {
             InitializeComponent();
