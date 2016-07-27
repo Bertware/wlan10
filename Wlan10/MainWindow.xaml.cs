@@ -39,6 +39,7 @@ namespace Net.Bertware.Wlan10
                 "Idea and creation by Bertware.\r\n" +
                 "www.bertware.net www.bertmarcelis.be\r\n\r\n" +
                 "This program uses the GongSolutions.Wpf.DragDrop library made by Punker79\r\n" +
+                "Copyright (c) 2015, Jan Karger (Steven Kirk)\r\n" +
                 "https://github.com/punker76/gong-wpf-dragdrop");
         }
     }
