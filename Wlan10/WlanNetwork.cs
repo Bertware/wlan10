@@ -1,4 +1,12 @@
-﻿using System;
+﻿// WlanNetwork.cs in Wlan10/Wlan10
+// Created 2016/07/27
+// ©Bertware, visit http://bertware.net
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+
+using System;
 using System.Text.RegularExpressions;
 
 namespace Net.Bertware.Wlan10
@@ -7,49 +15,54 @@ namespace Net.Bertware.Wlan10
     {
         private const string CmdDetail = "wlan sh profiles \"<name>\"";
 
+        /// <summary>
+        /// Set network priority
+        /// </summary>
         private const string CmdUpdate =
             "wlan set profileorder name=\"<name>\" interface=\"<interface>\" priority=<priority>";
 
         /// <summary>
-        /// autoswitch can be yes or no 
+        ///     autoswitch can be yes or no
         /// </summary>
         private const string CmdSetAutoswitch =
             "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" autoSwitch=<autoswitch>";
 
         /// <summary>
-        /// Connectionmode can be auto or manual
+        ///     Connectionmode can be auto or manual
         /// </summary>
         private const string CmdSetAutoConnect =
             "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" ConnectionMode=<autoconnect>";
-       
+
         /// <summary>
-        /// nonbroadcast can be yes or no
+        ///     nonbroadcast can be yes or no
         /// </summary>
         private const string CmdSetNonBroadcast =
             "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" nonBroadcast=<nonbroadcast>";
+
         /// <summary>
-        /// Set the pre-shared key or passphrase
+        ///     Set the pre-shared key or passphrase
         /// </summary>
         private const string CmdSetKey =
             "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" keyMaterial=<key> ";
+        /// <summary>
+        ///     Delete this profile
+        /// </summary>
+        private const string CmdDelete = "wlan delete profile \"<name\"";
 
         private readonly bool _allUsers;
 
         public bool AllUsers
         {
-            get
-            {
-                return _allUsers;
-            }
+            get { return _allUsers; }
         }
 
         private readonly string _interface;
         private readonly int _version;
         private readonly string _profileType;
         private readonly string _name;
-        private  bool _autoconnect;
-        private  bool _connectWithoutBroadcast;
-        private  bool _autoswitch;
+        private bool _autoconnect;
+        private bool _connectWithoutBroadcast;
+        private bool _autoswitch;
         private readonly bool _macRandomization;
         private readonly int _SSIDCount;
         private readonly string _SSIDName;
@@ -87,7 +100,7 @@ namespace Net.Bertware.Wlan10
             {
                 _autoconnect = value;
                 string param = value ? "auto" : "manual";
-                Netshell.NetshellCmd(prepareCommand(CmdSetAutoConnect.Replace("<autoconnect>", param)));
+                Netshell.NetshellCmd(PrepareCommand(CmdSetAutoConnect.Replace("<autoconnect>", param)));
             }
         }
 
@@ -98,7 +111,7 @@ namespace Net.Bertware.Wlan10
             {
                 _connectWithoutBroadcast = value;
                 string param = value ? "yes" : "no";
-                Netshell.NetshellCmd(prepareCommand(CmdSetNonBroadcast.Replace("<nonbroadcast>", param)));
+                Netshell.NetshellCmd(PrepareCommand(CmdSetNonBroadcast.Replace("<nonbroadcast>", param)));
             }
         }
 
@@ -109,7 +122,7 @@ namespace Net.Bertware.Wlan10
             {
                 _autoswitch = value;
                 string param = value ? "yes" : "no";
-                Netshell.NetshellCmd(prepareCommand(CmdSetAutoswitch.Replace("<autoswitch>", param)));
+                Netshell.NetshellCmd(PrepareCommand(CmdSetAutoswitch.Replace("<autoswitch>", param)));
             }
         }
 
@@ -192,9 +205,9 @@ namespace Net.Bertware.Wlan10
             }
 
             _name = name;
-            string output = Netshell.NetshellCmd(prepareCommand(CmdDetail));
+            string output = Netshell.NetshellCmd(PrepareCommand(CmdDetail));
 
-           _interface = parseInterface(output);
+            _interface = parseInterface(output);
 
             _allUsers = (String.Equals(getFieldFromOutput(output, "Applied"), "All User Profile",
                 StringComparison.Ordinal));
@@ -238,7 +251,7 @@ namespace Net.Bertware.Wlan10
 
         private string parseInterface(string output)
         {
-            return Regex.Match(output,"on interface (.*?):").Groups[1].Value;
+            return Regex.Match(output, "on interface (.*?):").Groups[1].Value;
         }
 
         private string getFieldFromOutput(string output, string field)
@@ -250,24 +263,29 @@ namespace Net.Bertware.Wlan10
 
         public override string ToString()
         {
-            return this.Name + "(" + this.Authentication + " " + this.NetworkType + ")";
+            return Name + "(" + Authentication + " " + NetworkType + ")";
         }
 
-        private string prepareCommand(string command)
+        private string PrepareCommand(string command)
         {
-            return command.Replace("<name>", this.Name)
-                .Replace("<ssid>", this.SsidName)
-                .Replace("<interface>", this._interface);
+            return command.Replace("<name>", Name)
+                .Replace("<ssid>", SsidName)
+                .Replace("<interface>", _interface);
         }
 
-        public void setKey(string key)
+        public void SetKey(string key)
         {
-            Netshell.NetshellCmd(prepareCommand(CmdSetKey).Replace("<key>", key));
+            Netshell.NetshellCmd(PrepareCommand(CmdSetKey).Replace("<key>", key));
         }
 
-        public void setPriority(int priority)
+        public void SetPriority(int priority)
         {
-            Netshell.NetshellCmd(prepareCommand(CmdUpdate).Replace("<priority>", priority.ToString()));
+            Netshell.NetshellCmd(PrepareCommand(CmdUpdate).Replace("<priority>", priority.ToString()));
+        }
+
+        public void DeleteNetwork()
+        {
+            Netshell.NetshellCmd(PrepareCommand(CmdDelete));
         }
     }
 }
