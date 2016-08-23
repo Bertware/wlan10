@@ -1,4 +1,12 @@
-﻿using System;
+﻿// App.xaml.cs in Wlan10/Wlan10
+// Created 2016/07/27
+// ©Bertware, visit http://bertware.net
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -6,7 +14,7 @@ using System.Windows;
 namespace Net.Bertware.Wlan10
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {

@@ -16,17 +16,26 @@
                 <GridView>
                     <GridViewColumn Header="Name" Width="auto" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Network type" Width="auto" DisplayMemberBinding="{Binding NetworkType}" />
-                    <GridViewColumn Header="Autoconnect" Width="auto">
+                    <GridViewColumn Header="Autoconnect" Width="100px">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Autoconnect, Mode=TwoWay}" HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Autoswitch" Width="auto">
+                    <GridViewColumn Header="Autoswitch" Width="100px">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Autoswitch, Mode=TwoWay}" HorizontalAlignment="Center"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Forget network" Width="150px">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Forget" Tag="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=GridView}}" Click="btnForget_click" Height="25px" Width="100px">
+                                    
+                                </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

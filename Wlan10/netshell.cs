@@ -1,17 +1,28 @@
-﻿using System.Collections.ObjectModel;
+﻿// Netshell.cs in Wlan10/Wlan10
+// Created 2016/07/27
+// ©Bertware, visit http://bertware.net
+// 
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file,
+// you can obtain one at http://mozilla.org/MPL/2.0/.
+
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace Net.Bertware.Wlan10
 {
-    class Netshell
+    /// <summary>
+    /// Netshell interactions
+    /// </summary>
+    static class Netshell
     {
         private const string CmdList = "wlan sh profiles";
 
         public static ObservableCollection<WlanNetwork> GetNetworks()
         {
             string output = NetshellCmd(CmdList);
-            MatchCollection m = Regex.Matches(output, ":\\s*(.*?)\r\n",RegexOptions.Multiline);
+            MatchCollection m = Regex.Matches(output, ":\\s*(.*?)\r\n", RegexOptions.Multiline);
             ObservableCollection<WlanNetwork> results = new ObservableCollection<WlanNetwork>();
             for (int i = 1; i < m.Count; i++)
             {

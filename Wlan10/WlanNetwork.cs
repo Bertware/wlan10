@@ -11,6 +11,9 @@ using System.Text.RegularExpressions;
 
 namespace Net.Bertware.Wlan10
 {
+    /// <summary>
+    /// A network obtained from netshell output.
+    /// </summary>
     internal class WlanNetwork
     {
         private const string CmdDetail = "wlan sh profiles \"<name>\"";
@@ -44,10 +47,11 @@ namespace Net.Bertware.Wlan10
         /// </summary>
         private const string CmdSetKey =
             "wlan set profileparameter name=\"<name>\" SSIDname=\"<ssid>\" keyMaterial=<key> ";
+
         /// <summary>
         ///     Delete this profile
         /// </summary>
-        private const string CmdDelete = "wlan delete profile \"<name\"";
+        private const string CmdDelete = "wlan delete profile \"<name>\"";
 
         private readonly bool _allUsers;
 
@@ -196,7 +200,10 @@ namespace Net.Bertware.Wlan10
             get { return _costSource; }
         }
 
-
+        /// <summary>
+        /// Get a full network based on the network name. Requires netshell access.
+        /// </summary>
+        /// <param name="name"></param>
         public WlanNetwork(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
@@ -249,11 +256,22 @@ namespace Net.Bertware.Wlan10
             _costSource = getFieldFromOutput(output, "Cost Source");
         }
 
+        /// <summary>
+        /// Parse the network interface
+        /// </summary>
+        /// <param name="output"></param>
+        /// <returns></returns>
         private string parseInterface(string output)
         {
             return Regex.Match(output, "on interface (.*?):").Groups[1].Value;
         }
 
+        /// <summary>
+        /// Parse a field with information
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
         private string getFieldFromOutput(string output, string field)
         {
             Match m = Regex.Match(output, field + "\\s*:\\s*(.+?)\\s*$",
@@ -273,17 +291,28 @@ namespace Net.Bertware.Wlan10
                 .Replace("<interface>", _interface);
         }
 
+        /// <summary>
+        /// Set the network key (WEP/WPA/WPA2) for this network
+        /// </summary>
+        /// <param name="key"></param>
         public void SetKey(string key)
         {
             Netshell.NetshellCmd(PrepareCommand(CmdSetKey).Replace("<key>", key));
         }
 
+        /// <summary>
+        /// Set the priority for this network
+        /// </summary>
+        /// <param name="priority"></param>
         public void SetPriority(int priority)
         {
             Netshell.NetshellCmd(PrepareCommand(CmdUpdate).Replace("<priority>", priority.ToString()));
         }
 
-        public void DeleteNetwork()
+        /// <summary>
+        /// Forget this network
+        /// </summary>
+        public void ForgetNetwork()
         {
             Netshell.NetshellCmd(PrepareCommand(CmdDelete));
         }
