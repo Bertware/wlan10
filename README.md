@@ -1,6 +1,8 @@
 # wlan10
 Wi-fi network manager for windows 10. Bringing back the functionality Microsoft removed, and more.
 
+If I helped you, please say thanks! (how you can do this is below)
+
 ## Requirements
 
 * Windows 10 (Might also work for windows 7,8)
@@ -17,6 +19,10 @@ See also: http://bertware.net/set-windows-network-priority-with-wlan10/
 
 ## Support
 Create a git issue if you have suggestions or problems
+
+## Say thanks
+
+Say thanks! Star this project so I can see the impact, [buy me some pizza](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K4856LBVQZ25L), or leave me a message!
 
 ## Credits
 ### Project
