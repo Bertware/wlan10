@@ -90,7 +90,7 @@ namespace Net.Bertware.Wlan10
 		private readonly string _authentication;
 		private readonly string _cipher;
 		private readonly bool _securityKey;
-		private readonly int _cost;
+		private readonly string _cost;
 		private readonly bool _congested;
 		private readonly bool _approachingLimit;
 		private readonly bool _overLimit;
@@ -185,7 +185,7 @@ namespace Net.Bertware.Wlan10
 			get { return _securityKey; }
 		}
 
-		public int Cost
+		public string Cost
 		{
 			get { return _cost; }
 		}
@@ -255,13 +255,7 @@ namespace Net.Bertware.Wlan10
 				_securityKey = (String.Equals(getFieldFromOutput(output, "Security key"), "Present",
 					StringComparison.Ordinal));
 
-				string strCost = getFieldFromOutput(output, "Cost");
-
-				_cost = -1;
-				if (!strCost.Equals("Unrestricted"))
-				{
-					_cost = Int32.Parse(strCost);
-				}
+				_cost = getFieldFromOutput(output, "Cost");
 
 				_congested = (getFieldFromOutput(output, "Congested") == "Yes");
 				_approachingLimit = (getFieldFromOutput(output, "Approaching Data Limit") == "Yes");
