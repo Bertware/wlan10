@@ -4,7 +4,7 @@
         xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
         Title="Wlan10 network manager" Height="503" Width="688">
     <Grid>
-        <Label Content="Drag and drop networks in the preferred order. Press save to store the new order. &#xD;&#xA;All checkbox changes are applied instantly. Once everything is configured, you don't need this tool anymore." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="44" Width="660"/>
+        <Label Content="Drag and drop networks in the preferred order. Press save to store the new order. &#xD;&#xA;All other changes are applied instantly. Once everything is configured, you don't need this tool anymore." HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Height="44" Width="660"/>
         <ListView Margin="10,49,10,41" Name="lvNetworks" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
