@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using Net.Bertware.Wlan10.Controller;
+using Net.Bertware.Wlan10.Model;
 
 namespace Net.Bertware.Wlan10
 {

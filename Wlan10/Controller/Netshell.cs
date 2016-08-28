@@ -22,9 +22,11 @@
 
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Text.RegularExpressions;
+using Net.Bertware.Wlan10.Model;
 
-namespace Net.Bertware.Wlan10
+namespace Net.Bertware.Wlan10.Controller
 {
 	/// <summary>
 	///     Netshell interactions
@@ -36,17 +38,15 @@ namespace Net.Bertware.Wlan10
 		public static ObservableCollection<WlanNetwork> GetNetworks()
 		{
 			string output = NetshellCmd(CmdList);
-			MatchCollection m = Regex.Matches(output, ":\\s*(.*?)\r\n", RegexOptions.Multiline);
+			MatchCollection m = Regex.Matches(output, "User Profile\\s+:\\s*(.*?)$", RegexOptions.Multiline);
 			ObservableCollection<WlanNetwork> results = new ObservableCollection<WlanNetwork>();
-			for (int i = 1; i < m.Count; i++)
+
+			for (int i = 0; i < m.Count; i++)
 			{
-				if (!string.IsNullOrWhiteSpace(m[i].Value))
+				string name = m[i].Groups[1].Value.Trim('\r');
+				if (!string.IsNullOrWhiteSpace(name))
 				{
-					// do not parse headers
-					if (!m[i].Value.Contains("Group policy profiles") && !m[i].Value.Contains("User profiles"))
-					{
-						results.Add(new WlanNetwork(m[i].Groups[1].Value));
-					}
+						results.Add(new WlanNetwork(name));
 				}
 			}
 			return results;

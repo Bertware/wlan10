@@ -23,8 +23,9 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
+using Net.Bertware.Wlan10.Controller;
 
-namespace Net.Bertware.Wlan10
+namespace Net.Bertware.Wlan10.Model
 {
 	/// <summary>
 	///     A network obtained from netshell output.
@@ -83,8 +84,8 @@ namespace Net.Bertware.Wlan10
 		private bool _connectWithoutBroadcast;
 		private bool _autoswitch;
 		private readonly bool _macRandomization;
-		private readonly int _SSIDCount;
-		private readonly string _SSIDName;
+		private readonly int _ssidCount;
+		private readonly string _ssidName;
 		private readonly string _networkType;
 		private readonly string _radioType;
 		private readonly string _authentication;
@@ -152,12 +153,12 @@ namespace Net.Bertware.Wlan10
 
 		public int SsidCount
 		{
-			get { return _SSIDCount; }
+			get { return _ssidCount; }
 		}
 
 		public string SsidName
 		{
-			get { return _SSIDName; }
+			get { return _ssidName; }
 		}
 
 		public string NetworkType
@@ -245,8 +246,8 @@ namespace Net.Bertware.Wlan10
 					"Switch to more preferred network if possible", StringComparison.Ordinal));
 				_macRandomization = (String.Equals(getFieldFromOutput(output, "MAC Randomization"), "Enabled",
 					StringComparison.Ordinal));
-				_SSIDCount = Int32.Parse(getFieldFromOutput(output, "Number of SSIDs"));
-				_SSIDName = getFieldFromOutput(output, "SSID name");
+				_ssidCount = Int32.Parse(getFieldFromOutput(output, "Number of SSIDs"));
+				_ssidName = getFieldFromOutput(output, "SSID name");
 				_networkType = getFieldFromOutput(output, "Network type");
 				_radioType = getFieldFromOutput(output, "Radio type");
 
@@ -302,6 +303,11 @@ namespace Net.Bertware.Wlan10
 			return Name + "(" + Authentication + " " + NetworkType + ")";
 		}
 
+		/// <summary>
+		/// Prepare a command, replacing the name, ssid and interface fields with actual values from the current network
+		/// </summary>
+		/// <param name="command"></param>
+		/// <returns></returns>
 		private string PrepareCommand(string command)
 		{
 			return command.Replace("<name>", Name)
