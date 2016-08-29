@@ -33,7 +33,7 @@
                     <GridViewColumn Header="Forget network" Width="150px">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Forget" Tag="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=GridView}}" Click="btnForget_click" Height="25px" Width="100px">
+                                <Button Content="Forget" Click="btnForget_click" Height="25px" Width="100px">
                                     
                                 </Button>
                             </DataTemplate>
