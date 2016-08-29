@@ -20,19 +20,7 @@ namespace Net.Bertware.Wlan10
     {
         public App()
         {
-	        try
-	        {
 		        AppDomain.CurrentDomain.AssemblyResolve += LoadDll;
-		        MainWindow w = new MainWindow();
-		        w.ShowDialog();
-	        }
-	        catch (Exception e)
-	        {
-		        MessageBox.Show("The application encountered an unexpected error and needs to exit. Please report this error to the developer (\"http://github.com/Bertware/Wlan10/Issues\")\r\n" +
-					"Error details:\r\n" +
-					e.Message + "\r\n" 
-					+ e.StackTrace,"Unexpected error",MessageBoxButton.OK,MessageBoxImage.Error);
-	        }
         }
 
         public static Assembly LoadDll(object sender, ResolveEventArgs args)
