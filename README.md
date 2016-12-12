@@ -12,10 +12,18 @@ If I helped you, please say thanks! (how you can do this is below)
 ## Usage
 
 Drag and drop your networks to your liking, save, enjoy.  
-Setting autoconnect and autoswitching doesn't require saving.  
+Setting autoconnect and autoswitching(read more about autoswitching below) doesn't require saving.  
 The tool is only required for setup, and can be removed once everything is configured.
 
 See also: http://bertware.net/set-windows-network-priority-with-wlan10/
+
+> **Note:** What is autoswitching?
+
+> The autoSwitch (WLANProfile) element determines the roaming behavior of an auto-connected network when a more preferred network is in range. . This element is optional.
+
+> If autoSwitch is "true" and connectionMode is set to "auto", a connection to a more preferred network must be attempted whenever a more preferred network comes into range. A more preferred network is one that is ordered higher in the list of preferred wireless networks. This connection attempt occurs when connected to another network.
+
+> An autoSwitch value set to "true" results in a higher frequency of periodic scanning for new networks. This may result in increased radio frequency pollution from these periodic scans and increased power consumption used by the wireless network adapter.
 
 ## Support
 Create a git issue if you have suggestions or problems
