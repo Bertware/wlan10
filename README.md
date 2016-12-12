@@ -15,7 +15,7 @@ Drag and drop your networks to your liking, save, enjoy.
 Setting autoconnect and autoswitching(read more about autoswitching below) doesn't require saving.  
 The tool is only required for setup, and can be removed once everything is configured.
 
-See also: http://bertware.net/set-windows-network-priority-with-wlan10/
+See also: http://blog.bertware.net/2016/07/set-windows-network-priority-wlan10/
 
 > **Note:** What is autoswitching?
 
