@@ -12,7 +12,12 @@ If I helped you, please say thanks! (how you can do this is below)
 
 ## Usage
 
-Drag and drop your networks to your liking, save, enjoy. Setting autoconnect and autoswitching (read more about autoswitching below) doesn't require saving.  
+Open the app. Some wifi networks should show up in the list.
+
+> **If no wifi networks show up, you need to connect to some wireless networks first!**  
+> Setting up a wireless network through the >app is not supported.
+
+Drag and drop the networks to change the order to your liking. Hit the save button to store this new order. Windows should now prefer the networks which you put on top, selecting the highest positioned available network. Setting autoconnect and autoswitching (read more about autoswitching below) doesn't require saving.  
 
 The tool is only required for setup, and can be removed once everything is configured. See [the blog for more](http://blog.bertware.net/2016/07/set-windows-network-priority-wlan10/).
 
