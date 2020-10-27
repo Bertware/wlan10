@@ -8,8 +8,6 @@ Please see Afit's fork for a maintained version that is actively being developed
 
 Wi-fi network manager for Windows 10. Bringing back the functionality Microsoft removed, and more.
 
-If I helped you, please say thanks! (how you can do this is below)
-
 ## Requirements
 
 * Windows 10 or 8.1 (may also work on 8, 7)
@@ -41,7 +39,7 @@ Create a [GitHub issue](https://github.com/Bertware/wlan10/issues) if you have s
 
 ## Say thanks
 
-Say thanks! Star this project so I can see the impact, [buy me some pizza](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=K4856LBVQZ25L), or leave me a message!
+Say thanks! Star this project so I can see the impact, or leave me a message!
 
 ## Credits
 
