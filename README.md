@@ -1,3 +1,9 @@
+# I am no longer maintaining this project, and gladly hand over the project to [Afit](https://github.com/afit/wlan10/).
+I created this as a quick tool to make managing wi-fi networks easier, but I don't have time to properly develop or maintain this project.
+Please see Afit's fork for a maintained version that is actively being developed: https://github.com/afit/wlan10/
+
+---
+
 # wlan10
 
 Wi-fi network manager for Windows 10. Bringing back the functionality Microsoft removed, and more.
